@@ -1,0 +1,11 @@
+{
+  "name": "server",
+  "version": "0.0.1",
+  "description": "Simple internet-shop that developed with PERN stack of technologies (PostgreSQL, Express.js, React.js, Node.js)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Max Korop",
+  "license": "ISC"
+}
