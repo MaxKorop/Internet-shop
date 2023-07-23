@@ -1,10 +1,11 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
 
 const Auth = () => {
     return (
-        <div>
+        <Container>
             AUTH
-        </div>
+        </Container>
     );
 }
 
