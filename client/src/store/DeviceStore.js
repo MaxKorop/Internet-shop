@@ -60,4 +60,4 @@ export default class DeviceStore {
     get selectedBrand() {
         return this._selectedBrand;
     }
-}
+};
