@@ -7,10 +7,11 @@ import { DEVICE_ROUTE } from '../utils/consts';
 
 const DeviceItem = ({ device }) => {
     const history = useNavigate();
+
     return (
         <Col md={3} className='mt-3' onClick={() => history(`${DEVICE_ROUTE}/${device.id}`)}>
             <Card style={{ width: 150, cursor: 'pointer' }} border='grey' className='p-2'>
-                <Image width={140} height={140} src={device.img} />
+                <Image width={140} height={140} src={`${process.env.REACT_APP_API_URL}/${device.img}`} />
                 <div className='text-black-50 d-flex justify-content-between align-items-center mt-3'>
                     <div>Samsung</div>
                     <div className='d-flex align-items-center'>

@@ -2,22 +2,14 @@ import { makeAutoObservable } from 'mobx';
 
 export default class DeviceStore {
     constructor() {
-        this._types = [
-            {id: 1, name: "First"},
-            { id: 2, name: "Second" },
-            {id: 3, name: "Third"},
-            {id: 4, name: "Fourth"},
-        ];
-        this._brands = [
-            { id: 1, name: "Samsung" },
-            { id: 2, name: "Apple" }
-        ];
-        this._devices = [
-            { id: 1, name: "iPhone 14 Pro", price: 50000, rating: 5, img: "https://www.ipeople.in.ua/files/products/%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202022-09-09%20%D0%B2%2018.20.07.800x600.png" },
-            { id: 2, name: "S23 Ultra", price: 50000, rating: 4, img: "https://scdn.comfy.ua/89fc351a-22e7-41ee-8321-f8a9356ca351/https://cdn.comfy.ua/media/catalog/product/_/g/_global_version_sm-s918_galaxys23ultra_front_green_221122_1_1.jpg/w_600" }
-        ];
+        this._types = [];
+        this._brands = [];
+        this._devices = [];
         this._seletedType = {};
         this._selectedBrand = {};
+        this._page = 1
+        this._totalCount = 0
+        this._limit = 3
         makeAutoObservable(this);
     }
 
@@ -34,11 +26,21 @@ export default class DeviceStore {
     }
 
     setSelectedType(type) {
+        this.setPage(1);
         this._seletedType = type;
     }
 
     setSelectedBrand(brand) {
+        this.setPage(1);
         this._selectedBrand = brand;
+    }
+
+    setPage(page) {
+        this._page = page;
+    }
+
+    setTotalCount(count) {
+        this._totalCount = count;
     }
 
     get types() {
@@ -59,5 +61,17 @@ export default class DeviceStore {
 
     get selectedBrand() {
         return this._selectedBrand;
+    }
+
+    get totalCount() {
+        return this._totalCount;
+    }
+
+    get page() {
+        return this._page;
+    }
+
+    get limit() {
+        return this._limit;
     }
 };

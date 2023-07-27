@@ -26,7 +26,7 @@ class DeviceController{
 
             return res.status(200).json(device);
         } catch (error) {
-            next(ApiError.badRequest(e.message));
+            next(ApiError.badRequest(error.message));
         }
     }
 
