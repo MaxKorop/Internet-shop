@@ -18,6 +18,14 @@ const BrandBar = observer(() => {
                     {brand.name}
                 </Card>
             })}
+            <Card
+                style={{ cursor: 'pointer' }}
+                border={Object.entries(device.selectedBrand).length === 0 ? 'primary' : 'light'}
+                onClick={() => { device.setSelectedBrand({}) }}
+                className="p-3"
+            >
+                All brands
+            </Card>
         </Col>
     );
 });
