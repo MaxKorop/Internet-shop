@@ -1,8 +1,13 @@
 import { $authHost, $host } from "./index";
 
 export const createType = async (type) => {
-    const { data } = await $authHost.post('api/type', type);
-    return data
+    try {
+        const { data } = await $authHost.post('api/type', type);
+        return data
+    } catch (error) {
+        error.message.split(' ')[5] === '403' ?
+            alert('Ви не маєте доступу до цієї функції') : console.log(error.message);
+    }
 }
 
 export const fetchTypes = async () => {
@@ -11,8 +16,13 @@ export const fetchTypes = async () => {
 }
 
 export const createBrand = async (brand) => {
-    const { data } = await $authHost.post('api/brand', brand);
-    return data
+    try {
+        const { data } = await $authHost.post('api/brand', brand);
+        return data        
+    } catch (error) {
+        error.message.split(' ')[5] === '403' ?
+            alert('Ви не маєте доступу до цієї функції') : console.log(error.message);
+    }
 }
 
 export const fetchBrands = async () => {
@@ -21,8 +31,13 @@ export const fetchBrands = async () => {
 }
 
 export const createDevice = async (device) => {
-    const { data } = await $authHost.post('api/device', device);
-    return data
+    try {
+        const { data } = await $authHost.post('api/device', device);
+        return data        
+    } catch (error) {
+        error.message.split(' ')[5] === '403' ?
+            alert('Ви не маєте доступу до цієї функції') : console.log(error.message);
+    }
 }
 
 export const fetchDevices = async (typeId, brandId, page, limit = 3) => {

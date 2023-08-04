@@ -22,8 +22,10 @@ const Auth = observer(() => {
             } else {
                 data = await registration(email, password);
             }
+            user.setIsAdmin(data.role === 'ADMIN');
             user.setUser(user);
             user.setIsAuth(true);
+            user.setBasket(data.basketId);
             history(SHOP_ROUTE);
         } catch (e) {
             alert(e.response.data.message);

@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Row, Col, Container, Card, Button } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image';
 import bigStar from '../assets/bigStar.png';
 import { useParams } from 'react-router-dom';
 import { fetchOneDevice } from '../http/deviceAPI';
+import { Context } from '../index';
+import { addToCart } from '../http/basketAPI';
 
 const DevicePage = () => {
     const [device, setDevice] = useState({ info: [] });
     const { id } = useParams();
+    const { user } = useContext(Context);
 
     useEffect(() => {
         fetchOneDevice(id).then(data => setDevice(data))
@@ -36,7 +39,7 @@ const DevicePage = () => {
                         style={{ width: 300, height: 300, fontSize:32, border: '5px solid lightgrey' }}
                     >
                         <h3>From: {device.price} ₴</h3>
-                        <Button variant="outline-dark">
+                        <Button variant="outline-dark" onClick={() => addToCart(user.basket, device.id).then(data => console.log(data))}>
                             Add to cart
                         </Button>
                     </Card>

@@ -3,9 +3,9 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken"); 
 const { User, Basket } = require("../models/models");
 
-const generateToken = (id, email, role) => {
+const generateToken = (id, email, role, basketId) => {
     return jwt.sign(
-        { id, email, role },
+        { id, email, role, basketId },
         process.env.SECRET_KEY,
         {expiresIn: '24h'}
     );
@@ -38,7 +38,8 @@ class UserController{
         if (!comparePassword) {
             return next(ApiError.internal("Incorrect password"));
         }
-        const token = generateToken(user.id, user.email, user.role);
+        const basket = await Basket.findOne({ where: { userId: user.id } });
+        const token = generateToken(user.id, user.email, user.role, basket.id);
         return res.status(200).json({ token });
     }
 
